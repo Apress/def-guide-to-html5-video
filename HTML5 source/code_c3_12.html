@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 3: example 12</title>
+    <style type="text/css">
+    video {
+      height:    200px;
+      padding:    10px;
+      left:       50px;
+      top:        50px;
+      background-color: white;      
+    }
+    video:hover {
+       height:   250px;
+       padding:   15px;
+       left:      25px;
+       top:       25px;
+       background-color: black;
+     }    
+    video, video:hover {
+      position:  relative;
+      border:    5px solid black;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: linear;
+      -moz-transition-property: all;
+      -moz-transition-duration: 0.5s;
+      -moz-transition-timing-function: linear;
+      -webkit-transition-property: all;
+      -webkit-transition-duration: 0.5s;
+      -webkit-transition-timing-function: linear;
+      -o-transition-property: all;
+      -o-transition-duration: 0.5s;
+      -o-transition-timing-function: linear;
+    }
+     </style>
+  </head>
+  <body>
+    <h1>Chapter 3: example 12</h1>
+    <video controls>
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+  </body>
+</html>

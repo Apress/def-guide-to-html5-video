@@ -1,0 +1,477 @@
+kate {
+
+  defs {
+    category "subtitle"
+    language "en"
+    directionality l2r_t2b
+  }
+
+  event {
+    id 0
+    00:00:15 --> 00:00:17.951
+    pre text "At the left we can see..."
+  }
+
+  event {
+    id 1
+    00:00:18.166 --> 00:00:20.083
+    pre text "At the right we can see the..."
+  }
+
+  event {
+    id 2
+    00:00:20.118999 --> 00:00:21.962
+    pre text "...the head-snarlers"
+  }
+
+  event {
+    id 3
+    00:00:21.999001 --> 00:00:24.368
+    pre text "Everything is safe.&#10;Perfectly safe."
+  }
+
+  event {
+    id 4
+    00:00:24.582001 --> 00:00:27
+    pre text "Emo?&#10;Emo!"
+  }
+
+  event {
+    id 5
+    00:00:28.205999 --> 00:00:29.995998
+    pre text "Watch out!"
+  }
+
+  event {
+    id 6
+    00:00:47.036999 --> 00:00:48.493999
+    pre text "Are you hurt?"
+  }
+
+  event {
+    id 7
+    00:00:51.993999 --> 00:00:53.949001
+    pre text "I don&#39;t think so.&#10;You?"
+  }
+
+  event {
+    id 8
+    00:00:55.16 --> 00:00:56.985001
+    pre text "I&#39;m Ok."
+  }
+
+  event {
+    id 9
+    00:00:57.118 --> 00:01:1.1110001
+    pre text "Get up.&#10;Emo, it&#39;s not safe here."
+  }
+
+  event {
+    id 10
+    00:01:2.0340004 --> 00:01:3.5730019
+    pre text "Let&#39;s go."
+  }
+
+  event {
+    id 11
+    00:01:3.6100006 --> 00:01:5.1139984
+    pre text "What&#39;s next?"
+  }
+
+  event {
+    id 12
+    00:01:5.1999969 --> 00:01:9.1459961
+    pre text "You&#39;ll see!"
+  }
+
+  event {
+    id 13
+    00:01:16.031998 --> 00:01:18.021996
+    pre text "Emo.&#10;This way."
+  }
+
+  event {
+    id 14
+    00:01:34.237 --> 00:01:35.481003
+    pre text "Follow me!"
+  }
+
+  event {
+    id 15
+    00:02:11.106003 --> 00:02:12.479996
+    pre text "Hurry Emo!"
+  }
+
+  event {
+    id 16
+    00:02:48.059006 --> 00:02:49.930008
+    pre text "You&#39;re not paying attention!"
+  }
+
+  event {
+    id 17
+    00:02:50.141998 --> 00:02:54.052002
+    pre text "I just want to answer the...&#10;...phone."
+  }
+
+  event {
+    id 18
+    00:02:54.973999 --> 00:02:57.972
+    pre text "Emo, look,&#10;I mean listen."
+  }
+
+  event {
+    id 19
+    00:02:59.139999 --> 00:03:2.0079956
+    pre text "You have to learn to listen."
+  }
+
+  event {
+    id 20
+    00:03:3.1399994 --> 00:03:4.9649963
+    pre text "This is not some game."
+  }
+
+  event {
+    id 21
+    00:03:5.0559998 --> 00:03:9.3450012
+    pre text "You, I mean we,&#10;we could easily die out here."
+  }
+
+  event {
+    id 22
+    00:03:10.014008 --> 00:03:13.959015
+    pre text "Listen,&#10;listen to the sounds of the machine."
+  }
+
+  event {
+    id 23
+    00:03:18.054001 --> 00:03:20.009003
+    pre text "Listen to your breathing."
+  }
+
+  event {
+    id 24
+    00:04:27.001007 --> 00:04:28.955994
+    pre text "Well, don&#39;t you ever get tired of this?"
+  }
+
+  event {
+    id 25
+    00:04:29.084015 --> 00:04:30.909027
+    pre text "Tired?!?"
+  }
+
+  event {
+    id 26
+    00:04:31.126007 --> 00:04:34.490997
+    pre text "Emo, the machine is like clockwork."
+  }
+
+  event {
+    id 27
+    00:04:35.083008 --> 00:04:37.074005
+    pre text "One move out of place..."
+  }
+
+  event {
+    id 28
+    00:04:37.165985 --> 00:04:39.120972
+    pre text "...and you&#39;re ground to a pulp."
+  }
+
+  event {
+    id 29
+    00:04:40.958008 --> 00:04:42.003998
+    pre text "But isn&#39;t it -"
+  }
+
+  event {
+    id 30
+    00:04:42.040985 --> 00:04:46.033997
+    pre text "Pulp, Emo!&#10;Is that what you want, pulp?"
+  }
+
+  event {
+    id 31
+    00:04:47.040009 --> 00:04:48.994995
+    pre text "Emo, your goal in life..."
+  }
+
+  event {
+    id 32
+    00:04:50.080994 --> 00:04:51.953003
+    pre text "...pulp?"
+  }
+
+  event {
+    id 33
+    00:05:41.156006 --> 00:05:43.028015
+    pre text "Emo, close your eyes."
+  }
+
+  event {
+    id 34
+    00:05:44.156006 --> 00:05:46.027008
+    pre text "Why?&#10;- Now!"
+  }
+
+  event {
+    id 35
+    00:05:51.154999 --> 00:05:52.10199
+    pre text "Ok."
+  }
+
+  event {
+    id 36
+    00:05:53.113007 --> 00:05:54.688019
+    pre text "Good."
+  }
+
+  event {
+    id 37
+    00:05:59.070007 --> 00:06:2.1029968
+    pre text "What do you see at your left side, Emo?"
+  }
+
+  event {
+    id 38
+    00:06:4.0280151 --> 00:06:5.8990173
+    pre text "Nothing.&#10;- Really?"
+  }
+
+  event {
+    id 39
+    00:06:6.0270081 --> 00:06:7.105011
+    pre text "No, nothing at all."
+  }
+
+  event {
+    id 40
+    00:06:7.9440002 --> 00:06:11.984009
+    pre text "And at your right,&#10;what do you see at your right side, Emo?"
+  }
+
+  event {
+    id 41
+    00:06:13.151001 --> 00:06:16.10199
+    pre text "The same Proog, exactly the same..."
+  }
+
+  event {
+    id 42
+    00:06:16.941986 --> 00:06:19.097992
+    pre text "...nothing!&#10;- Great."
+  }
+
+  event {
+    id 43
+    00:06:40.105011 --> 00:06:42.723999
+    pre text "Listen Proog! Do you hear that!"
+  }
+
+  event {
+    id 44
+    00:06:43.105011 --> 00:06:44.894012
+    pre text "Can we go here?"
+  }
+
+  event {
+    id 45
+    00:06:44.979004 --> 00:06:47.894012
+    pre text "There?&#10;It isn&#39;t safe, Emo."
+  }
+
+  event {
+    id 46
+    00:06:49.144989 --> 00:06:52.013
+    pre text "But...&#10;- Trust me, it&#39;s not."
+  }
+
+  event {
+    id 47
+    00:06:53.019989 --> 00:06:54.144989
+    pre text "Maybe I could..."
+  }
+
+  event {
+    id 48
+    00:06:54.181 --> 00:06:55.968994
+    pre text "No."
+  }
+
+  event {
+    id 49
+    00:06:57.10199 --> 00:06:59.93399
+    pre text "NO!"
+  }
+
+  event {
+    id 50
+    00:07:0.14401245 --> 00:07:3.0580139
+    pre text "Any further questions, Emo?"
+  }
+
+  event {
+    id 51
+    00:07:3.9760132 --> 00:07:5.0900269
+    pre text "No."
+  }
+
+  event {
+    id 52
+    00:07:9.0589905 --> 00:07:10.088989
+    pre text "Emo?"
+  }
+
+  event {
+    id 53
+    00:07:11.141998 --> 00:07:13.057983
+    pre text "Emo, why..."
+  }
+
+  event {
+    id 54
+    00:07:13.095001 --> 00:07:14.022003
+    pre text "Emo..."
+  }
+
+  event {
+    id 55
+    00:07:14.058014 --> 00:07:18.003021
+    pre text "...why can&#39;t you see&#10;the beauty of this place?"
+  }
+
+  event {
+    id 56
+    00:07:18.140991 --> 00:07:20.048004
+    pre text "The way it works."
+  }
+
+  event {
+    id 57
+    00:07:20.140015 --> 00:07:23.89502
+    pre text "How perfect it is."
+  }
+
+  event {
+    id 58
+    00:07:23.932007 --> 00:07:26.96402
+    pre text "No, Proog, I don&#39;t see."
+  }
+
+  event {
+    id 59
+    00:07:27.056 --> 00:07:29.970001
+    pre text "I don&#39;t see because there&#39;s nothing there."
+  }
+
+  event {
+    id 60
+    00:07:31.054993 --> 00:07:34.964996
+    pre text "And why should I trust my&#10;life to something that isn&#39;t there?"
+  }
+
+  event {
+    id 61
+    00:07:35.054993 --> 00:07:36.925995
+    pre text "Well can you tell me that?"
+  }
+
+  event {
+    id 62
+    00:07:37.053986 --> 00:07:38.925995
+    pre text "Answer me!"
+  }
+
+  event {
+    id 63
+    00:07:42.970001 --> 00:07:44
+    pre text "Proog..."
+  }
+
+  event {
+    id 64
+    00:07:45.053009 --> 00:07:46.985016
+    pre text "...you&#39;re a sick man!"
+  }
+
+  event {
+    id 65
+    00:07:47.022003 --> 00:07:48.917999
+    pre text "Stay away from me!"
+  }
+
+  event {
+    id 66
+    00:07:52.052002 --> 00:07:54.884003
+    pre text "No! Emo! It&#39;s a trap!"
+  }
+
+  event {
+    id 67
+    00:07:55.13501 --> 00:07:56.931
+    pre text "Hah, it&#39;s a trap."
+  }
+
+  event {
+    id 68
+    00:07:56.967987 --> 00:08:1.0429993
+    pre text "At the left side you can see&#10;the hanging gardens of Babylon!"
+  }
+
+  event {
+    id 69
+    00:08:1.9670105 --> 00:08:3.9570007
+    pre text "How&#39;s that for a trap?"
+  }
+
+  event {
+    id 70
+    00:08:5.0499878 --> 00:08:6.9219971
+    pre text "No, Emo."
+  }
+
+  event {
+    id 71
+    00:08:9.0079956 --> 00:08:12.087982
+    pre text "At the right side you can see...&#10;...well guess what..."
+  }
+
+  event {
+    id 72
+    00:08:12.924011 --> 00:08:14.665009
+    pre text "...the colossus of Rhodes!"
+  }
+
+  event {
+    id 73
+    00:08:15.131989 --> 00:08:16.052979
+    pre text "No!"
+  }
+
+  event {
+    id 74
+    00:08:16.089996 --> 00:08:21.919006
+    pre text "The colossus of Rhodes&#10;and it is here just for you Proog."
+  }
+
+  event {
+    id 75
+    00:08:51.000977 --> 00:08:52.922974
+    pre text "It is there..."
+  }
+
+  event {
+    id 76
+    00:08:52.958984 --> 00:08:56.039978
+    pre text "I&#39;m telling you,&#10;Emo..."
+  }
+
+  event {
+    id 77
+    00:08:57 --> 00:08:59.867004
+    pre text "...it is."
+  }
+
+}

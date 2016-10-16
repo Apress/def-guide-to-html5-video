@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 12</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 12</h1>
+    <audio src="HelloWorld.ogg" controls></audio>
+    <script type="text/javascript">
+      var input = document.getElementsByTagName("audio")[0];
+      input.volume = 0;
+      var audio = new Audio();
+      var samples, sampleRate, channels, insertFrom, insertTo;
+      input.addEventListener("loadedmetadata", getMetadata, false);
+      function getMetadata() {
+        sampleRate = input.mozSampleRate;
+        channels   = input.mozChannels;
+        audio.mozSetup(channels, sampleRate);
+        // create enough buffer to play smoothly
+        samples = new Float32Array(2*sampleRate);
+        var k = 2* Math.PI * 400 / sampleRate;
+        for (var i=0, size=samples.length; i < size; i++) {
+          samples[i] = 0.1 * Math.sin(k * i);
+        }
+        insertFrom = 3.0 * sampleRate * channels;
+        insertTo   = 4.0 * sampleRate * channels;
+      }
+
+      // Render the samples
+      var position = 0;
+      var insPos = 0;
+      input.addEventListener("MozAudioAvailable", writeSamples, false);
+      function writeSamples(event) {
+        if (position >= insertFrom && position <= insertTo) {
+          // replace with sine wave
+          for (i=0; i< event.frameBuffer.length; i++) {
+            event.frameBuffer[i] = samples[insPos++];
+            if (insPos == samples.length) insPos = 0;
+          }
+        }
+        position += audio.mozWriteAudio(event.frameBuffer);
+      }
+    </script>
+  </body>
+</html>

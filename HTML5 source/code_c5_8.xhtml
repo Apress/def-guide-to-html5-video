@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head> 
+    <title>Guide to HTML5 video: chapter 5: example 8</title> 
+    <style> 
+      .svginside > * {
+        position: absolute;
+      }
+      .svgbutton path {
+        pointer-events: none;
+      }
+      /* transition opacity from 0.3 to 0.7 over 0.5s
+      .svgbutton {
+        -moz-transition-property: opacity;
+        -moz-transition-duration: 0.5s;
+        opacity: 0.3;
+      }
+      .svgbutton:hover {
+        opacity: 0.7;
+      }
+      */
+      video {
+        clip-path: url("code_c5_8.svg#c1");
+        -webkit-mask: url("code_c5_8.svg");
+      }
+    </style> 
+    <script>
+    /* <![CDATA[ */
+      var vid;
+      window.onload = function() {
+        vid = document.getElementsByTagName("video")[0];
+        vid.addEventListener("ended", updateButton, true);
+        vid.addEventListener("play", updateButton, true);
+        updateButton();
+      }
+      function updateButton() {
+        document.querySelector("#controls .play").style.display =
+            isPlaying(vid) ? "none" : "block";
+        document.querySelector("#controls .pause").style.display =
+            !isPlaying(vid) ? "none" : "block";
+      }
+      function isPlaying(video) {
+        return (!video.paused && !video.ended);
+      }
+      function togglevideo() {
+        !isPlaying(vid) ? vid.play() : vid.pause();
+        updateButton();
+      }
+      /* ]]> */
+    </script>
+  </head> 
+  <body> 
+    <h1>Guide to HTML5 video: chapter 5: example 8</h1> 
+    <div id="controls" class="svginside"> 
+      <video class="target" height="270" width="480"> 
+        <source src="HelloWorld.mp4"  type="video/mp4"/> 
+        <source src="HelloWorld.webm" type="video/webm"/> 
+        <source src="HelloWorld.ogv"  type="video/ogg"/> 
+      </video> 
+      <svg height="270" width="480" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g class="svgbutton"> 
+          <circle stroke="black" fill="transparent" fill-opacity="0" stroke-width="12" cx="240" cy="135" r="40"
+                  onclick="togglevideo();"/> 
+          <path class="play" fill="black" d="M 230 120 v 30 l 25 -15 Z"/> 
+          <path class="pause" stroke-width="12" stroke="black" d="M 230 120 v 30 m 16 -30 v 30"/> 
+        </g> 
+      </svg> 
+    </div>    
+  </body> 
+</html>

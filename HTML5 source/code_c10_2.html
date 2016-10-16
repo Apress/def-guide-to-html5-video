@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 10: example 2</title>
+  </head>
+  <body>
+    <h1>Chapter 10: example 2</h1>
+    <device type="media"></device>
+    <video width="320" height="240"></video>
+    <script type="text/javascript">
+    var video, videoDevice;
+    window.onload = function() {
+      videoDevice = document.getElementsByTagName("device")[0];
+      video = document.getElementsByTagName("video")[0];
+      videoDevice.addEventListener("change", play, false);
+    }
+    function play() {
+      var videoStream = this.data; video.src = videoStream.url; video.play();
+    }
+    </script>
+  </body>
+</html>

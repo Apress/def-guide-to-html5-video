@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 6</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 6</h1>
+    <video controls>
+        <source src="video1.mp4" type="video/mp4">
+        <source src="video1.webm" type="video/webm">
+        <source src="video1.ogv" type="video/ogg">
+    </video>
+    <div id="output"></div>
+    <script type="text/javascript">
+      window.onload = function() {
+        var video = document.getElementsByTagName("video")[0];
+        var output = document.getElementById("output");
+        var socket = new WebSocket('ws://192.168.1.132:8080/');
+        socket.addEventListener("message", onMessage, false);
+        video.addEventListener("play", sendPlay, false);
+        video.addEventListener("pause", sendPause, false);
+        video.addEventListener("seeked", sendSeek, false);
+        var me = "";
+        var prev_seek = 0;
+        function onMessage(evt) {
+          output.innerHTML += "RECEIVED: "+evt.data+"<br/>";
+          pos = evt.data.indexOf("Connected as:");
+          if (pos != -1) {
+            // identify myself
+            me = evt.data.substring(pos+14);
+          } else {
+            id = evt.data.match(/<(.*?)>/);
+            if (id[1] != me) {
+              // execute commands if from peer
+              pos = evt.data.indexOf(">");
+              switch (evt.data.substring(pos+2,pos+7)) {
+                case "play ":
+                  video.play();
+                  break;
+                case "pause":
+                  video.pause();
+                  break;
+                case "seek ":
+                  seekTime = evt.data.substring(20);
+                  if (prev_seek != parseFloat(seekTime)) {
+                    video.currentTime = parseFloat(seekTime);
+                  }
+                  break;
+                default:
+              }
+            }
+          }
+        }
+        function sendPlay() {
+          socket.send("play ");
+        }
+        function sendPause() {
+          socket.send("pause");
+        }
+        function sendSeek() {
+          prev_seek = video.currentTime;
+          msg = "seek "+prev_seek;
+          socket.send(msg);
+        }
+      }
+    </script>
+</html>

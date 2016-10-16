@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 2: example 8</title>
+  </head>
+  <body>
+    <h1>Chapter 2: example 8</h1>
+    <div style="float: left;">
+      <video src="HelloWorld.mp4" controls preload="none" width="300">
+      </video>
+      <p><span class="buffered"></span>.</p>
+    </div>
+    <div style="float: left;">
+      <video src="HelloWorld.mp4" controls preload="metadata" width="300">
+      </video>
+      <p><span class="buffered"></span>.</p>
+    </div>
+    <div style="float: left;">
+      <video src="HelloWorld.top" controls preload="auto" width="300">
+      </video>
+      <p><span class="buffered"></span>.</p>
+    </div>
+    <script type="text/javascript">
+    function printTimeRanges(tr) {
+      if (tr == null) return "undefined";
+      s = tr.length + ": ";
+      for (i=0; i<tr.length; i++) {
+        s += tr.start(i) + " - " + tr.end(i) + "; ";
+      }
+      return s;
+    }
+    window.onload = function() {
+      videos = document.getElementsByTagName("video");
+      spans = document.getElementsByTagName("span");
+      for (i=0; i<3; i++) {
+        spans[i].innerHTML = printTimeRanges(videos[i].buffered);
+      }
+    }
+    </script>
+  </body>
+</html>

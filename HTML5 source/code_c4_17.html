@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 17</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 17</h1>
+    <video controls width="400">
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <p>played on start: <span id="played_first"></span>.</p>
+    <p>played after loadedmetadata: <span id="played_loadedmetadata"></span>.</p>
+    <p>played after seeking: <span id="played_seeking"></span>.</p>
+    <p>played after timeupdate: <span id="played_timeupdate"></span>.</p>
+    <script type="text/javascript">
+      function printTimeRanges(tr) {
+        if (tr == null) return "undefined";
+        s = tr.length + ": ";
+        for (i=0; i<tr.length; i++) {
+          s += tr.start(i) + " - " + tr.end(i) + "; ";
+        }
+        return s;
+      }
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("played_first");
+      span1.innerHTML = printTimeRanges(video.played);
+      
+      span2 = document.getElementById("played_loadedmetadata");
+      function span2Update(evt) {
+          span2.innerHTML = printTimeRanges(video.played);
+          span3 = document.getElementById("played_seeking");
+          video.currentTime = video.duration/2;
+          video.play();
+          span3.innerHTML = printTimeRanges(video.played);
+      }
+      span4 = document.getElementById("played_timeupdate");
+      function span4Update(evt) {
+        span4.innerHTML = printTimeRanges(video.played);
+      }
+      video.addEventListener("loadedmetadata", span2Update, false);
+      video.addEventListener("timeupdate", span4Update, false);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 6</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 6</h1>
+    <audio controls autoplay>
+        <source src="HelloWorld.m4a" type="audio/aac">
+        <source src="HelloWorld.mp3" type="audio/mp4">
+        <source src="HelloWorld.ogg" type="audio/ogg">
+    </audio>
+    
+    <p>muted on start: <span id="muted_first"></span>.</p>
+    <p>muted after volumechange: <span id="muted_volumechange"></span>.</p>
+    <p>muted after timeupdate: <span id="muted_timeupdate"></span>.</p>
+    <script type="text/javascript">
+      audio = document.getElementsByTagName("audio")[0];
+      span1 = document.getElementById("muted_first");
+      span1.innerHTML = audio.muted;
+
+      span2 = document.getElementById("muted_volumechange");
+      function span2Update(evt) {
+        span2.innerHTML = audio.muted;
+      }
+      span3 = document.getElementById("muted_timeupdate");
+      i=0;
+      function span3Update(evt) {
+        if (i>20) {
+          audio.muted = !audio.muted;
+          i=0;
+        } else {
+          i=i+1;
+        }
+        span3.innerHTML = i + " " + audio.muted;
+      }
+      audio.addEventListener("volumechange", span2Update, false);
+      audio.addEventListener("timeupdate", span3Update, false);
+    </script>
+  </body>
+</html>

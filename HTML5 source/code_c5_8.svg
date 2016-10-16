@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+          "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="c1" maskUnits="userSpaceOnUse"
+                      maskContentUnits="userSpaceOnUse">
+      <polygon id="poly" fill="white"
+               transform="translate(-180,-90) scale(1.2)" 
+               points="350,75  379,161 469,161 397,215
+                       423,301 350,250 277,301 303,215
+                       231,161 321,161" />
+    </clipPath>
+  </defs>
+  <use xlink:href="#poly"/>
+</svg>
+
+

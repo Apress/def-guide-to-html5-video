@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 13</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 13</h1>
+    <input type="text" size="4" id="freq" value="880"><label> Hz</label>
+    <button onclick="start()">play</button>
+    <button onclick="stop()">stop</button>
+    <script type="text/javascript">
+      var audio = new Audio();
+      sampleRate = 44100;
+      audio.mozSetup(1, sampleRate);
+      
+      // set up sample array of size 500ms
+      var samples = new Float32Array(22050);
+      var intervalId;
+      function start() {
+        // prepare samples
+        var currentSoundSample = 0;
+        var frequency = 0;
+        frequency = parseFloat(document.getElementById("freq").value);
+        if (!frequency) {
+          return;
+        }
+        var k = 2* Math.PI * frequency / sampleRate;
+        for (var i=0, size=samples.length; i < size; i++) {
+          samples[i] = 0.5 * Math.sin(k * currentSoundSample++);
+        }
+
+        // call playback per samples array
+        clearInterval(intervalId);
+        intervalId = setInterval(playSound, parseInt(samples.length*1000/sampleRate));
+      }
+      function stop() {
+        clearInterval(intervalId);
+      }
+
+      // do playback & canvas display
+      function playSound() {
+        audio.mozWriteAudio(samples);
+      }      
+    </script>
+  </body>
+</html>

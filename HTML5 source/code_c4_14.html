@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 14</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 14</h1>
+    <video controls width="400">
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <p>readyState on start: <span id="readyState_first"></span>.</p>
+    <p>readyState after loadedmetadata: <span id="readyState_loadedmetadata"></span>.</p>
+    <p>readyState after progress: <span id="readyState_progress"></span>.</p>
+    <p>readyState after timeupdate: <span id="readyState_timeupdate"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("readyState_first");
+      span1.innerHTML = video.readyState;
+      
+      span2 = document.getElementById("readyState_loadedmetadata");
+      function span2Update(evt) {
+          span2.innerHTML = video.readyState;
+      }
+      span3 = document.getElementById("readyState_progress");
+      function span3Update(evt) {
+          span3.innerHTML = video.readyState;
+      }
+      span4 = document.getElementById("readyState_timeupdate");
+      function span4Update(evt) {
+          span4.innerHTML = video.readyState;
+      }
+      video.addEventListener("loadedmetadata", span2Update, false);
+      video.addEventListener("progress", span3Update, false);
+      video.addEventListener("timeupdate", span4Update, false);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 14</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 14</h1>
+    <div style="padding: 50px; background-color: #090909;">
+      <video style="vertical-align: bottom;" width="320">
+        <source src="video1.mp4"  type="video/mp4">
+        <source src="video1.webm" type="video/webm">
+        <source src="video1.ogv"  type="video/ogg">
+      </video>
+      <br/>
+      <canvas id="reflection" width="320" height="55" style="vertical-align: top;"></canvas>
+    </div>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, rctxt, video;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        reflection = document.getElementById("reflection");
+        rctxt = reflection.getContext("2d");
+        // flip canvas
+        rctxt.translate(0,160);
+        rctxt.scale(1,-1);
+        // create gradient
+        gradient = rctxt.createLinearGradient(0, 105, 0, 160);
+        gradient.addColorStop(0, "rgba(255, 255, 255, 1.0)");
+        gradient.addColorStop(1, "rgba(255, 255, 255, 0.3)");
+        rctxt.fillStyle = gradient;
+        rctxt.rect(0, 105, 320, 160);
+        video.addEventListener("play", paintFrame, false);
+        if (video.readyState >= video.HAVE_METADATA) {
+          startPlay();
+        } else {
+          video.addEventListener("loadedmetadata", startPlay, false);
+        }
+      }
+      function startPlay() {
+        video.play();
+      }
+      function paintFrame() {
+        // draw frame, and fill with the opacity gradient mask
+        rctxt.drawImage(video, 0, 0, 320, 160);
+        rctxt.globalCompositeOperation = "destination-out";
+        rctxt.fill();
+        // restore composition operation for next frame draw
+        rctxt.globalCompositeOperation = "source-over";
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+           paintFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

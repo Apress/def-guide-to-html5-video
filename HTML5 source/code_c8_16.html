@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 16</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 16</h1>
+    <canvas width="512" height="200"></canvas>
+    <canvas id="scratch" width="512" height="200" style="display: none;"></canvas>
+    <script type="text/javascript">
+      var context   = new AudioContext();
+      var convolver = context.createConvolver();
+      var analyser = context.createAnalyser();
+      analyser.fftSize = 2048;
+      analyser.smoothingTimeConstant = 0.1;
+      
+      // create filter graph: source -> convolver -> analyser -> destination      
+      source = context.createBufferSource();
+      source.looping = false;
+      source.connect(convolver);
+      convolver.connect(analyser);
+      analyser.connect(context.destination);
+      buffer = new Uint8Array(analyser.frequencyBinCount);
+      
+      // prepare for rendering
+      var canvas = document.getElementsByTagName("canvas")[0];
+      var ctxt = canvas.getContext("2d");
+      var scratch = document.getElementById("scratch");
+      var sctxt = scratch.getContext("2d");
+      ctxt.fillRect(0, 0, 512, 200);
+      ctxt.strokeStyle = "#FFFFFF";
+      ctxt.lineWidth = 2;
+              
+      // load convolution buffer impulse response
+      var req1 = context.createAudioRequest("feedback-spring.aif", false);
+      req1.onload = function() {
+        convolver.buffer = req1.buffer;
+
+        // load samples and play away
+        request = context.createAudioRequest("HelloWorld.aif", false);
+        request.onload = function() { 
+            source.buffer = request.buffer;
+            source.noteOn(10);
+            draw();
+        }
+        request.send();
+
+      }
+      req1.send();
+
+      function draw() {
+        analyser.getByteTimeDomainData(buffer);
+        
+        // do the canvas painting
+        var width = 512;
+        var step = parseInt(buffer.length / width);
+        img = ctxt.getImageData(0,0,512,200);
+        sctxt.putImageData(img, 0, 0, 512, 200);
+        ctxt.globalAlpha = 0.5;
+        ctxt.fillRect(0, 0, 512, 200);
+        ctxt.drawImage(scratch,0,0,512,200);
+        ctxt.globalAlpha = 1;
+        ctxt.beginPath();
+        ctxt.moveTo(0, buffer[0]*200/256);
+        for(var i=1; i< width; i++) {
+          ctxt.lineTo(i, buffer[i*step]*200/256);
+        }
+        ctxt.stroke();
+        setTimeout(draw, 0);
+      }
+    </script>
+  </body>
+</html>

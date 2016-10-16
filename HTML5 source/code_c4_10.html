@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 10</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 10</h1>
+    <video controls autoplay width="400">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <p>paused on start: <span id="paused_first"></span>.</p>
+    <p>paused after pause(): <span id="paused_timeupdate"></span>.</p>
+    <p>paused after play(): <span id="paused_playing"></span>.</p>
+    <p>paused after ended: <span id="paused_ended"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("paused_first");
+      function playing() {
+        return !video.paused && !video.ended && video.error==null &&
+               (video.readyState==video.HAVE_FUTURE_DATA || video.readyState==video.HAVE_ENOUGH_DATA);
+      }
+      span1.innerHTML = video.paused + " (playing: " + playing() + ")";
+      span2 = document.getElementById("paused_timeupdate");
+      function span2Update(evt) {
+        if (video.currentTime > video.duration/2) {
+          video.pause();
+          video.removeEventListener("timeupdate", span2Update, false);
+          span2.innerHTML = video.paused + " (playing: " + playing() + ")";
+          video.play();
+          span3 = document.getElementById("paused_playing");
+          span3.innerHTML = video.paused + " (playing: " + playing() + ")";
+        }
+      }
+      span4 = document.getElementById("paused_ended");
+      function span4Update(evt) {
+        span4.innerHTML = video.paused + " (playing: " + playing() + ")";
+      }
+      video.addEventListener("timeupdate", span2Update, false);
+      video.addEventListener("ended", span4Update, false);
+    </script>
+  </body>
+</html>

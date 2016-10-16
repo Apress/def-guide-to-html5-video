@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 2: example 16</title>
+  </head>
+  <body>
+    <h1>Chapter 2: example 16</h1>
+    
+    <p>Video supports the following MIME types:
+      <ul>
+        <script type="text/javascript">
+          var types = new Array();
+          types[0] = "video/ogg";
+          types[1] = 'video/ogg; codecs="theora, vorbis"';
+          types[2] = "video/webm";
+          types[3] = 'video/webm; codecs="vp8, vorbis"';
+          types[4] = "video/mp4";
+          types[5] = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+          // create a video element
+          var video = document.createElement('video');
+          // test types
+          for (i=0; i<types.length; i++) {
+            var support = video.canPlayType(types[i]);
+            if (support == "") support="no";
+            document.write("<li><b>"+types[i]+"</b> : "+support+"</li>");
+          }
+        </script>
+      </ul>
+    </p>
+
+  </body>
+</html>

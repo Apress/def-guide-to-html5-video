@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 5</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 5</h1>
+    <audio controls autoplay>
+        <source src="HelloWorld.m4a" type="audio/aac">
+        <source src="HelloWorld.mp3" type="audio/mp4">
+        <source src="HelloWorld.ogg" type="audio/ogg">
+    </audio>
+    
+    <p>volume on start: <span id="volume_first"></span>.</p>
+    <p>volume after volumechange: <span id="volumechange"></span>.</p>
+    <p>volume after timeupdate: <span id="timeupdate"></span>.</p>
+    <script type="text/javascript">
+      audio = document.getElementsByTagName("audio")[0];
+      span1 = document.getElementById("volume_first");
+      span1.innerHTML = audio.volume;
+
+      span2 = document.getElementById("volumechange");
+      function span2Update(evt) {
+        span2.innerHTML = audio.volume;
+      }
+      span3 = document.getElementById("timeupdate");
+      function span3Update(evt) {
+        if (audio.volume > 0.1) {
+          audio.volume = audio.volume - 0.05;
+        } else {
+          audio.volume = 1.0;
+        }
+        span3.innerHTML = audio.volume;
+      }
+      audio.addEventListener("volumechange", span2Update, false);
+      audio.addEventListener("timeupdate", span3Update, false);
+    </script>
+  </body>
+</html>

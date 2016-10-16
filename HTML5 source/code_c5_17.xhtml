@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 5: example 17</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 5: example 17</h1>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink" width="480px" height="540px">
+      <defs>
+        <filter id="c1">
+          <feConvolveMatrix order="3" kernelMatrix="1  1 1
+                                                    1 -8 1
+                                                    1  1 1"
+                            preserveAlpha="true"/>
+        </filter>
+      </defs>
+      <video height="270" width="480" xlink:href="HelloWorld.ogv" filter="url(#c1)"/>
+      <defs>
+        <g id="video">
+          <foreignObject width="480px" height="270px">
+            <body xmlns="http://www.w3.org/1999/xhtml" style="margin:0;">
+              <video height="270" width="480" autoplay="autoplay">
+                <source src="HelloWorld.mp4"  type="video/mp4"/>
+                <source src="HelloWorld.webm" type="video/webm"/>
+                <source src="HelloWorld.ogv"  type="video/ogg"/>
+              </video>
+            </body>
+          </foreignObject>
+        </g>
+      </defs>
+      <use xlink:href="#video" filter="url(#c1)"/>
+    </svg>
+  </body>
+</html>

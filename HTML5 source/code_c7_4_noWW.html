@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 7: example 4</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 7: example 4</h1>
+    <p>
+      <video controls height="270" width="480" >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+    </p>
+    <p>
+      <canvas width="400" height="300" style="border: 1px solid black;">
+      </canvas>
+      <canvas id="scratch" width="400" height="300" style="display: none;">
+      </canvas>
+      <div id="count"></div>
+    </p>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, video, sctxt, count, canvas;
+      var calls = 0;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        scratch = document.getElementById("scratch");
+        sctxt = scratch.getContext("2d");
+        count = document.getElementById("count");
+        video.addEventListener("play", drawFrame, false);
+      }
+
+      var prev_frame = null;
+      var threshold = 25;
+
+      function toGrey(frame) {
+        grayFrame = new Array (frame.data.length / 4);
+        for (i = 0; i < grayFrame.length; i++) {
+          r = frame.data[4*i+0];
+          g = frame.data[4*i+1];
+          b = frame.data[4*i+2];
+          grayFrame[i] = Math.min(0.3*r + 0.59*g + 0.11*b, 255);
+        }
+        return grayFrame;
+      }
+
+      function drawFrame() {
+        w = 320; h = 160;
+        sctxt.drawImage(video, 0, 0, w, h);
+        frame = sctxt.getImageData(0, 0, w, h);
+
+        // convert current frame to gray
+        cur_frame = toGrey(frame);
+
+        // avoid calling this the first time
+        if (prev_frame != null) {
+          // calculate difference
+          for (i = 0; i < cur_frame.length; i++) {
+            if (Math.abs(prev_frame[i] - cur_frame[i]) > threshold) {
+              // color in pixels with high difference
+              frame.data[4*i+0] = 0;
+              frame.data[4*i+1] = 100;
+              frame.data[4*i+2] = 255;
+            }
+          }
+        }
+
+        // remember current frame as previous one
+        prev_frame = cur_frame;
+
+        context.putImageData(frame, 0, 0);
+        calls += 1;
+        count.textContent = calls;          
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+          drawFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

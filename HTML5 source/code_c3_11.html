@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 3: example 11</title>
+    <style type="text/css">
+    video {
+      height: 100px;
+    }
+    div#marquee{
+      position: relative;
+      width:    543px;
+      height:   104px;
+      padding:  4px 0px 0px 4px;
+      left:     300px;
+      border:   5px solid black;
+      overflow: hidden;
+      overflow-style: marquee-line;
+      overflow-x: -webkit-marquee;
+      marquee-speed: normal;
+      -webkit-marquee-speed: normal;
+      marquee-direction: reverse;
+      -webkit-marquee-direction: backwards;
+      marquee-style: slide;
+      -webkit-marquee-style: slide;
+      marquee-play-count: 1;
+      -webkit-marquee-repetition: 1;
+    }
+    div#marquee:hover{
+      marquee-style: none;
+      -webkit-marquee-style: none;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Chapter 3: example 11</h1>
+    <div id="marquee">
+      <video autoplay>
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+      <video autoplay>
+        <source src="Video1.mp4"  type="video/mp4">
+        <source src="Video1.webm" type="video/webm">
+        <source src="Video1.ogv"  type="video/ogg">
+      </video>
+      <video autoplay>
+        <source src="Video2.mp4"  type="video/mp4">
+        <source src="Video2.webm" type="video/webm">
+        <source src="Video2.ogv"  type="video/ogg">
+      </video>
+    </div>
+  </body>
+</html>

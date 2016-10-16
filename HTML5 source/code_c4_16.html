@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 16</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 16</h1>
+    <video controls width="400">
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <p>buffered on start: <span id="buffered_first"></span>.</p>
+    <p>buffered after loadedmetadata: <span id="buffered_loadedmetadata"></span>.</p>
+    <p>buffered after seeking: <span id="buffered_seeking"></span>.</p>
+    <p>buffered after timeupdate: <span id="buffered_timeupdate"></span>.</p>
+    <script type="text/javascript">
+      function printTimeRanges(tr) {
+        if (tr == null) return "undefined";
+        s = tr.length + ": ";
+        for (i=0; i<tr.length; i++) {
+          s += tr.start(i) + " - " + tr.end(i) + "; ";
+        }
+        return s;
+      }
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("buffered_first");
+      span1.innerHTML = printTimeRanges(video.buffered);
+      
+      span2 = document.getElementById("buffered_loadedmetadata");
+      function span2Update(evt) {
+          span2.innerHTML = printTimeRanges(video.buffered);
+          span3 = document.getElementById("buffered_seeking");
+          video.currentTime = video.duration/2;
+          video.play();
+          span3.innerHTML = printTimeRanges(video.buffered);
+      }
+      span4 = document.getElementById("buffered_timeupdate");
+      function span4Update(evt) {
+        span4.innerHTML = printTimeRanges(video.buffered);
+      }
+      video.addEventListener("loadedmetadata", span2Update, false);
+      video.addEventListener("timeupdate", span4Update, false);
+    </script>
+  </body>
+</html>

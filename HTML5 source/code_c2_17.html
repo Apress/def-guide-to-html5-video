@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 2: example 17</title>
+  </head>
+  <body>
+    <h1>Chapter 2: example 17</h1>
+
+    <p>Audio supports the following MIME types:
+      <ul>
+        <script type="text/javascript">
+          var types = new Array();
+          types[0] = "audio/ogg";
+          types[1] = "audio/ogg; codecs=vorbis";
+          types[2] = "audio/mpeg";
+          types[3] = "audio/mpeg; codecs=mp3";
+          types[4] = "audio/wav";
+          types[5] = "audio/wav; codecs=1";
+          types[6] = "audio/mp4";
+          types[7] = "audio/mp4; codecs=aac";
+          types[8] = "audio/x-m4b";
+          types[9] = "audio/x-m4b; codecs=aac";
+          types[10] = "audio/x-m4p";
+          types[11] = "audio/x-m4p; codecs=aac";
+          types[12] = "audio/aac";
+          types[13] = "audio/aac; codecs=aac";
+          types[14] = "audio/x-aac";
+          types[15] = "audio/x-aac; codecs=aac";
+
+          // create a audio element
+          var audio = document.createElement('audio');
+          // test types
+          for (i=0; i<types.length; i++) {
+            var support = audio.canPlayType(types[i]);
+            if (support == "") support="no";
+            document.write("<li><b>"+types[i]+"</b> : "+support+"</li>");
+          }
+        </script>
+      </ul>
+    </p>
+
+  </body>
+</html>

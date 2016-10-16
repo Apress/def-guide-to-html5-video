@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 13</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 13</h1>
+    <canvas id="canvas" width="320" height="160"></canvas>
+    <video style="display: none;">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, video;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        // paint text onto canvas as mask
+        context.font = 'bold 70px sans-serif';
+        context.textBaseline = 'top';
+        context.fillText('Hello World!', 0, 50, 320);
+        context.globalCompositeOperation = "source-atop";
+        video.addEventListener("play", paintFrame, false);
+        if (video.readyState >= video.HAVE_METADATA) {
+          startPlay();
+        } else {
+          video.addEventListener("loadedmetadata", startPlay, false);
+        }
+      }
+      function startPlay() {
+        video.play();
+      }
+      function paintFrame() {
+        context.drawImage(video, 0, 0, 320, 160);
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+           paintFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>
+
+

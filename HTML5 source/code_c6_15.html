@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 15</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 15</h1>
+    <p>
+      <video controls height="270" width="480" >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+    </p>
+    <p>
+      <canvas width="600" height="400" style="border: 1px solid black;">
+      </canvas>
+    </p>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, video;
+      var i = 0;
+      var repeater;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        // provide a shadow
+        context.shadowOffsetX = 5;
+        context.shadowOffsetY = 5;
+        context.shadowBlur = 4;
+        context.shadowColor = "rgba(0, 0, 0, 0.5)";
+        video.addEventListener("play", repeat, false);
+      }
+      function repeat() {
+        // try to get each browser at the same frequency
+        repeater = setInterval("paintFrame()", 4);
+      }
+      function paintFrame() {
+        context.drawImage(video, 0, 0, 160, 80);
+        context.setTransform(1, 0,
+                             0, 1,
+                             0, 0);
+        i += 1;
+        context.translate(3 * i , 1.5 * i);
+        context.rotate(0.1 * i);
+        if (video.paused || video.ended) {
+          clearInterval(repeater);
+          alert(i);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 4</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 4</h1>
+    <div id="output"></div>
+    <script type="text/javascript">
+      var output = document.getElementById("output");
+      var socket = new WebSocket('ws://websockets.org:8787/echo');
+      socket.addEventListener("open", onOpen, false);
+      socket.addEventListener("close", onClose, false);
+      socket.addEventListener("message", onMessage, false);
+      function onOpen () {
+        output.innerHTML += "CONNECTED<br/>";
+        message = "Here comes the data";
+        socket.send(message);
+        output.innerHTML += "SENT: " + message + "<br/>"; 
+      }
+      function onClose() {
+        output.innerHTML += "DISCONNECTED<br/>";
+      }
+      function onMessage(evt) {
+        output.innerHTML += '<span style="color: blue;">RESPONSE: ' + evt.data+'</span><br/>';
+        socket.close();
+      }
+    </script>
+</html>

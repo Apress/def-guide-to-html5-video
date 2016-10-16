@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 20</title>
+    <style type="text/css">
+    #player {
+      padding: 10px;
+      border:    5px solid black;
+      border-radius: 15px;
+      box-shadow: 10px 10px 5px gray;
+      box-sizing: content-box;
+      max-width: 455px;
+    }
+    #positionview {
+      width: 400px;
+      height: 40px;
+    }
+    #transportbar {
+      height: 20px;
+      width: 300px;
+      position: relative;
+      float: left;
+      border: 2px solid black;
+    }
+    #position {
+      background: #D7BC28;
+      height: 20px;
+      width: 0px;
+    }
+    #time {
+      position: relative;
+      float: right;
+    }
+    #video {
+      position: relative;
+      float: left;
+      padding: 0;
+      margin: 0;
+    }
+    #volumecontrol {
+      position: relative;
+      float: right;
+      padding-left:20px;
+    }
+    #volumebar {
+      position:relative;
+      height:225px;
+      width:25px;
+      border:2px solid black;
+    }
+    #volume {
+      position:absolute;
+      height:225px;
+      width:25px;
+      background:#006;
+    }
+    #volume.disabled {
+      background:#ccc;
+    }
+    #controls div {
+      display:inline;
+    }
+    #controls div input {
+      background:url(buttons.png) no-repeat top left;
+      border:none;
+      height: 60px;
+      width: 60px;
+      padding: 5px;
+      display: inline-block;
+    }
+    #controls div #repeat {
+      background-position:0 -901px;
+    }
+    #controls div #stop {
+      background-position:0 -301px;
+    }
+    #controls div #louder {
+      background-position:0 -451px;
+    }
+    #controls div #quieter {
+      background-position:0 -601px;
+    }
+    #controls div #mute {
+      background-position:0 -751px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Chapter 4: example 20</h1>
+    <div id="player">
+      <div id="video">
+        <video width="400" height="225">
+          <source src="video2.mp4"  type="video/mp4">
+          <source src="video2.webm" type="video/webm">
+          <source src="video2.ogv"  type="video/ogg">
+        </video>
+        <div id="positionview">
+          <div id="transportbar"><div id="position"></div></div>
+          <div id="time">
+            <span id="curTime">00:00</span>/<span id="duration">00:00</span>
+          </div>
+        </div>
+      </div>
+      <div id="volumecontrol">
+        <div id="volumebar"><div id="volume"></div></div>
+        <div id="vol"></div>
+      </div>
+      <div style="clear: both;"></div>
+      <div id="controls">
+        <div><input id="play" type="image" src="0.gif" alt="Play"></div>
+        <div><input id="repeat" type="image" src="0.gif" alt="Repeat"></div>
+        <div><input id="stop" type="image" src="0.gif" alt="Stop"></div>
+        <div><input id="louder" type="image" src="0.gif" alt="Louder"></div>
+        <div><input id="quieter" type="image" src="0.gif" alt="Quieter"></div>
+        <div><input id="mute" type="image" src="0.gif" alt="Mute"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      position  = document.getElementById("position");
+      curTime   = document.getElementById("curTime");
+      duration  = document.getElementById("duration");
+      volume    = document.getElementById("volume");
+      vol       = document.getElementById("vol");
+      play      = document.getElementById("play");
+      repeat    = document.getElementById("repeat");
+      stop      = document.getElementById("stop");
+      louder    = document.getElementById("louder");
+      quieter   = document.getElementById("quieter");
+      mute      = document.getElementById("mute");
+      
+      video.addEventListener("loadedmetadata", init, false);
+      function init(evt) {
+        duration.innerHTML = video.duration.toFixed(2);
+        vol.innerHTML      = video.volume.toFixed(2);
+      }
+      
+      video.addEventListener("timeupdate", curTimeUpdate, false);
+      function curTimeUpdate(evt) {
+        curTime.innerHTML = video.currentTime.toFixed(2);
+        position.style.width = 300*video.currentTime/video.duration + "px";
+      }
+      
+      video.addEventListener("volumechange", dispVol, false);
+      function dispVol(evt) {
+        vol.innerHTML = video.volume.toFixed(2);
+      }
+      
+      play.addEventListener("click", togglePlay, false);
+      function togglePlay(evt) {
+        if (video.paused == false) {
+          video.pause();
+          play.style.backgroundPosition = "0 0";
+        } else {
+          video.play();
+          play.style.backgroundPosition = "0 -151px";
+        }
+      }
+
+      repeat.addEventListener("click", rewind, false);
+      function rewind(evt) {
+        video.currentTime = video.currentTime - 2.0;
+      }
+
+      stop.addEventListener("click", restart, false);
+      function restart(evt) {
+        video.pause();
+        play.style.backgroundPosition = "0 0";
+        video.currentTime = 0;
+      }
+
+      louder.addEventListener("click", volInc, false);
+      function volInc(evt) {
+        changeVolume(video.volume+0.1);
+      }
+      
+      quieter.addEventListener("click", volDec, false);
+      function volDec(evt) {
+        changeVolume(video.volume-0.1);
+      }
+      
+      mute.addEventListener("click", toggleMute, false);
+      function toggleMute(evt) {
+        video.muted = !video.muted;
+        if (video.muted) {
+          volume.className = 'disabled';
+        } else {
+          volume.className = '';
+        }
+      }
+      
+      function changeVolume(changeTo) {
+        if(video.muted){
+          toggleMute();
+        }
+        if(changeTo > 1.0) {
+          changeTo = 1.0;
+        } else if (changeTo < 0.0) {
+          changeTo = 0.0;
+        }
+        volume.style.height = 225*changeTo +'px';
+        volume.style.marginTop = 225-(225*changeTo) + 'px';
+        video.volume = changeTo;
+      }
+    </script>
+    <p>
+      Design inspiration and buttons from 
+      <a href="http://icant.co.uk/easy-youtube/">http://icant.co.uk/easy-youtube/</a><br/>
+      Thanks go to Chris Heilmann
+    </p>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 15</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 15</h1>
+    <video controls autoplay width="400">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <p>error on start: <span id="error_first"></span>.</p>
+    <p>error after timeupdate: <span id="error_timeupdate"></span>.</p>
+    <p>error after error: <span id="error_error"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("error_first");
+      span1.innerHTML = (video.error ? video.error.code : "none");
+      
+      span2 = document.getElementById("error_timeupdate");
+      function span2Update(evt) {
+        if (video.currentTime > video.duration/2) {
+          video.src = "notavail.mp4";
+          video.load();
+          span2.innerHTML = (video.error ? video.error.code : "none");
+        }        
+      }
+      span3 = document.getElementById("error_error");
+      function span3Update(evt) {
+          span3.innerHTML = (video.error ? video.error.code : "none");
+      }
+      video.addEventListener("timeupdate", span2Update, false);
+      video.addEventListener("error", span3Update, false);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 11</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 11</h1>
+    <audio src="HelloWorld.ogg" controls></audio>
+    <script type="text/javascript">
+      var input = document.getElementsByTagName("audio")[0];
+      input.volume = 0;
+      var audio = new Audio();
+      input.addEventListener("loadedmetadata", getMetadata, false);
+      function getMetadata() {
+        audio.mozSetup(input.mozChannels, input.mozSampleRate);
+      }
+      input.addEventListener("MozAudioAvailable", writeSamples, false);
+      // Render the samples
+      var buffers = [];
+      function writeSamples(event) {
+        buffers.push(event.frameBuffer);
+        // If there's buffered data, write that
+        while (buffers.length > 0) {
+          var buffer = buffers.shift();
+          var written = audio.mozWriteAudio(buffer);
+          // If all data wasn't written, keep it in the buffers:
+          if (written < buffer.length) {
+            buffers.unshift(buffer.slice(written));
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

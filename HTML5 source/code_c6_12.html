@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 12</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 12</h1>
+    <canvas id="canvas" width="320" height="160"></canvas>
+    <video style="display: none;">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, video;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        context.beginPath();
+        // speech bubble
+        context.moveTo(75,25);
+        context.quadraticCurveTo(25,25,25,62.5);
+        context.quadraticCurveTo(25,100,50,100);
+        context.quadraticCurveTo(100,120,100,125);
+        context.quadraticCurveTo(90,120,65,100);
+        context.quadraticCurveTo(125,100,125,62.5);
+        context.quadraticCurveTo(125,25,75,25);
+        // outer circle
+        context.arc(180,90,50,0,Math.PI*2,true);
+        context.moveTo(215,90);
+        // mouth
+        context.arc(180,90,30,0,Math.PI,false);
+        context.moveTo(170,65);
+        // eyes
+        context.arc(165,65,5,0,Math.PI*2,false);
+        context.arc(195,65,5,0,Math.PI*2,false);
+        context.clip();
+        video.addEventListener("play", drawFrame, false);
+        if (video.readyState >= video.HAVE_METADATA) {
+          startPlay();
+        } else {
+          video.addEventListener("loadedmetadata", startPlay, false);
+        }
+      }
+      function startPlay() {
+        video.play();
+      }
+      function drawFrame() {
+        context.drawImage(video, 0, 0, 320, 160);
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+           drawFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

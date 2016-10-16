@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 6</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 6</h1>
+      <audio src="HelloWorld.ogg" controls></audio>
+      <canvas width="512" height="200"></canvas>
+      <canvas id="scratch" width="512" height="200" style="display: none;"></canvas>
+      <script type="text/javascript">
+        var audio = document.getElementsByTagName("audio")[0];
+        var canvas = document.getElementsByTagName("canvas")[0];
+        var scratch = document.getElementById("scratch");
+        var context = canvas.getContext('2d');
+        var sctxt = scratch.getContext("2d");
+        context.fillRect(0, 0, 512, 200);
+        context.strokeStyle = "#FFFFFF";
+        context.lineWidth = 2;
+        audio.addEventListener("MozAudioAvailable", writeSamples, false);
+        audio.addEventListener("loadedmetadata", getMetadata, false);
+        var fbLength, channels;
+        function getMetadata() {
+          channels = audio.mozChannels;
+          fbLength = audio.mozFrameBufferLength;
+        }
+        // Render the waveform
+        function writeSamples (event){
+          var data = event.frameBuffer;
+          var samples = 512;
+          var step = (fbLength / channels) / samples;
+          img = context.getImageData(0,0,512,200);
+          sctxt.putImageData(img, 0, 0, 512, 200);
+          context.globalAlpha = 0.5;
+          context.fillRect(0, 0, 512, 200);
+          context.drawImage(scratch,0,0,512,200);
+          context.globalAlpha = 1;
+          context.beginPath();
+          context.moveTo(0, 100-data[0]*100);
+          for(var i=1; i< samples; i++){
+            context.lineTo(i, 100-data[i*step]*100);
+          }
+          context.stroke();
+        }
+      </script>
+  </body>
+</html>

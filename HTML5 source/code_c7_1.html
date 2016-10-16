@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 7: example 1</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 7: example 1</h1>
+    <p>
+      <video controls height="270" width="480" >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+    </p>
+    <p>
+      <canvas width="400" height="300" style="border: 1px solid black;">
+      </canvas>
+      <canvas id="scratch" width="400" height="300" style="display: none;">
+      </canvas>
+      <div id="count"></div>
+    </p>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, video, sctxt, count;
+      var calls = 0;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        scratch = document.getElementById("scratch");
+        sctxt = scratch.getContext("2d");
+        count = document.getElementById("count");
+        video.addEventListener("play", playFrame, false);
+      }
+
+      function playFrame() {
+        w = 320; h = 160;
+        sctxt.drawImage(video, 0, 0, w, h);
+        frame = sctxt.getImageData(0, 0, w, h);
+        // Loop over each pixel of frame
+        for (x = 0; x < w; x++) {
+          for (y = 0; y < h; y++) {
+            // index in image data array
+            i = x + w*y;
+            // grab colors
+            r = frame.data[4*i+0];
+            g = frame.data[4*i+1];
+            b = frame.data[4*i+2];
+            // replace with sepia colors
+            frame.data[4*i+0] = Math.min(0.393*r + 0.769*g + 0.189*b, 255);
+            frame.data[4*i+1] = Math.min(0.349*r + 0.686*g + 0.168*b, 255);
+            frame.data[4*i+2] = Math.min(0.272*r + 0.534*g + 0.131*b, 255);
+          }
+        }
+        context.putImageData(frame, 0, 0);
+        calls ++;
+        count.textContent = calls;
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+          playFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

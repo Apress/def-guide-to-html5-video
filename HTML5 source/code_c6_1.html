@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 1</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 1</h1>
+    <video controls height="270" width="480" >
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <canvas width="400" height="300" style="border: 1px solid black;">
+    </canvas>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        video.addEventListener("timeupdate", paintFrame, false);
+      }
+      function paintFrame() {
+        context.drawImage(video, 0, 0, 160, 80);
+      }
+    </script>
+  </body>
+</html>

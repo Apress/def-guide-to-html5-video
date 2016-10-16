@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 5: example 11</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 5: example 11</h1>
+    <video class="target1" height="270" width="480" controls >
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <video class="target2" height="270" width="480" controls >
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <video class="target3" height="270" width="480" controls >
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <video class="target4" height="270" width="480" controls >
+      <source src="video1.mp4"  type="video/mp4">
+      <source src="video1.webm" type="video/webm">
+      <source src="video1.ogv"  type="video/ogg">
+    </video>
+    <svg height="0">
+      <defs>
+        <filter id="f1" x="0%" y="0%" width="100%" height="100%">
+          <feFlood  flood-color="blue" result="A"/>
+          <feColorMatrix type="matrix" in="SourceGraphic" result="B"
+          values="1   0  0  0 0
+                  0   1  0  0 0
+                  0   0  1  0 0
+                  1   1  1  0 0"/>
+          <feMerge>
+            <feMergeNode in="A"/>
+            <feMergeNode in="B"/>
+          </feMerge>
+        </filter>
+
+        <filter id="f2">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="A"/>
+          <feOffset in="A" dx="4" dy="4" result="B"/>
+          <feSpecularLighting in="A" surfaceScale="5" specularConstant=".75"
+                              specularExponent="20" lighting-color="#bbbbbb"
+                              result="C">
+            <fePointLight x="-5000" y="-10000" z="20000"/>
+          </feSpecularLighting>
+          <feComposite in="C" in2="SourceAlpha" operator="in" result="C"/>
+          <feComposite in="SourceGraphic" in2="C" operator="arithmetic" 
+                       k1="0" k2="1" k3="1" k4="0" result="D"/>
+          <feMerge>
+            <feMergeNode in="B"/>
+            <feMergeNode in="D"/>
+          </feMerge>
+        </filter>
+
+        <filter id="f3">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="A"/>
+          <feConvolveMatrix order="3" kernelMatrix="1 -1  1 -1 -0.01 -1 1 -1 1" edgeMode="none" result="B"/>
+          <feMerge>
+            <feMergeNode in="A"/>
+            <feMergeNode in="B"/>
+          </feMerge>
+        </filter>
+
+        <filter id="f4">
+          <feColorMatrix values="1 1 0 0 0
+                                 0 0 1 0 0
+                                 0 0 0 1 0
+                                 0 0 0 0 1" 
+                                 style="color-interpolation-filters:sRGB" result="A"/>
+          <feConvolveMatrix filterRes="100 100" style="color-interpolation-filters:sRGB"
+           order="3" kernelMatrix="0 -1 0   -1 4 -1   0 -1 0" preserveAlpha="true" in="A"/>
+        </filter>
+
+      </defs>
+    </svg>
+    <style>
+      .target1 {
+        filter: url("#f1");
+      }
+      .target2 {
+        filter: url("#f2");
+      }
+      .target3 {
+        filter: url("#f3");
+      }
+      .target4 {
+        filter: url("#f4");
+      }
+    </style>
+  </body>
+</html>

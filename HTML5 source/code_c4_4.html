@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 4</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 4</h1>
+    <video controls autoplay width="400">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <p>duration on start: <span id="duration_first"></span>.</p>
+    <p>duration after loadedmetadata: <span id="duration_loadedmetadata"></span>.</p>
+    <p>duration after durationchange: <span id="duration_durationchange"></span>.</p>
+    <p>duration after ended: <span id="duration_ended"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("duration_first");
+      span1.innerHTML = video.duration;
+
+      span2 = document.getElementById("duration_loadedmetadata");
+      function span2Update(evt) {
+        span2.innerHTML = video.duration;
+      }
+      span3 = document.getElementById("duration_durationchange");
+      function span3Update(evt) {
+        span3.innerHTML = video.duration;
+      }
+      span4 = document.getElementById("duration_ended");
+      function span4Update(evt) {
+        span4.innerHTML = video.duration;
+      }
+      video.addEventListener("loadedmetadata", span2Update, false);
+      video.addEventListener("durationchange", span3Update, false);
+      video.addEventListener("ended", span4Update, false);
+    </script>
+  </body>
+</html>

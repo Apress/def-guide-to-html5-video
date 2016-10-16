@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <mask id="c1" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+      <circle id="circle" cx="240" cy="135" r="135" fill="white">
+        <animate attributeName="r" values="150;240;150" dur="3s" repeatCount="10" />
+      </circle>
+    </mask>
+  </defs>
+  <use xlink:href="#circle"/>
+</svg>
+
+

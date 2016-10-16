@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 10: example 7</title>
+  </head>
+  <body>
+    <h1>Chapter 10: example 7</h1>
+    <device type="media"></device>
+    <video width="320" height="240" id="self_view"></video>
+    <video width="320" height="240" id="remote_video"></video>
+    <script type="text/javascript">
+      var transceiver = new MediaStreamTransceiver("ws://150.132.141.60:8880/delayswitch?sid=0");
+      var videoDevice = document.getElementsByTagName("device")[0];
+      var selfView = document.getElementById("self_view");
+      var remoteVideo = document.getElementById("remote_video");
+      videoDevice.addEventListener("change", playLocal, false);
+      transceiver.addEventListener("connect", playRemote, false);
+
+      function playLocal(evt) {
+        var videoStream = this.data;
+        // exclude audio from the self view
+        selfView.src = videoStream.url + "#video";
+        selfView.play();
+        // set the stream to share
+        transceiver.localStream = videoStream;
+      }
+      function playRemote() {
+        remoteVideo.src = transceiver.remoteStream.url;
+        remoteVideo.play();
+      }
+    </script>
+  </body>
+</html>

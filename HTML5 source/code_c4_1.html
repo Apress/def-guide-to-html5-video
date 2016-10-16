@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 1</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 1</h1>
+    <video controls>
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <script type="text/javascript">
+      videos = document.getElementsByTagName("video");
+      video = videos[0];
+      video.addEventListener("loadedmetadata", function(evt) {
+        sources = video.getElementsByTagName("source");
+        alert(video.currentSrc);
+        video.controls = false;
+        video.autoplay =  true;
+        video.width = '400';
+      }, false);
+    </script>
+  </body>
+</html>

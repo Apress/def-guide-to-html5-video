@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 4</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 4</h1>
+    <video poster="video6.png" controls>
+      <source src="video6.mp4"  type="video/mp4">
+      <source src="video6.webm" type="video/webm">
+      <source src="video6.ogv"  type="video/ogg">
+      <track label="English HoH" src="video6_audesc_en.wsrt" kind="descriptions" srclang="en">
+      <track label="Chapters"    src="video6_chapters_en.wsrt" kind="chapters" srclang="en">
+      <track label="English SUB"          src="video6_en.wsrt" kind="subtitles" srclang="en">
+      <track label="French SUB"           src="video6_fr.wsrt" kind="subtitles" srclang="fr">
+      <track label="Portuguese/BR SUB"    src="video6_ptbr.wsrt" kind="subtitles" srclang="pt-br">
+      <track label="Russian SUB"          src="video6_ru.wsrt" kind="subtitles" srclang="ru">
+      <track label="English SUB Enhanced" src="video6_en_enhanced.wsrt" kind="metadata" srclang="en">
+      <track label="English SUB Grammar"  src="video6_en_grammar.wsrt" kind="metadata" srclang="en">
+    </video>
+    <script>
+      // get video element
+      var video = document.getElementsByTagName("video")[0];
+      var 
+      ParseTracks();
+      function ParseTracks () {
+        var tracks = video.getElementsByTagName("track");
+        console.log(tracks);
+      }
+      
+      // video timed tracks
+        readonly attribute TimedTrack[] tracks;
+        MutableTimedTrack addTrack(in DOMString kind, in optional DOMString label, in optional DOMString language);
+      
+      var video.tracks = new function(track)
+      {
+        this.kind = track.kind;
+        this.label = track.label;
+        this.language = track.srclang;
+        
+        // consts for readyState
+        this.NONE = 0;
+        this.LOADING = 1;
+        this.LOADED = 2;
+        this.ERROR = 3;
+        this.readyState = this.NONE;
+        this.onload = function () {};
+        this.onerror = function () {};
+
+        // consts for mode
+        this.OFF = 0;
+        this.HIDDEN = 1;
+        this.SHOWING = 2;
+        this.mode = this.OFF;
+
+      }
+
+      TimedTrack {
+
+        readonly attribute TimedTrackCueList cues;
+        readonly attribute TimedTrackCueList activeCues;
+
+        readonly attribute Function oncuechange;
+      };
+      
+      interface TimedTrackCue {
+        readonly attribute TimedTrack track;
+        readonly attribute DOMString id;
+
+        readonly attribute double startTime;
+        readonly attribute double endTime;
+        readonly attribute boolean pauseOnExit;
+
+        DOMString getCueAsSource();
+        DocumentFragment getCueAsHTML();
+
+        readonly attribute Function onenter;
+        readonly attribute Function onexit;
+      };
+    </script>
+</html>

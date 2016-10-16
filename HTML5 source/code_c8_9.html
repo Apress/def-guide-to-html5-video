@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 9</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 9</h1>
+    <audio src="HelloWorld.ogg" controls></audio>
+    <script type="text/javascript">
+      var input = document.getElementsByTagName("audio")[0];
+      input.volume = 0;
+      var audio = new Audio();
+      input.addEventListener("loadedmetadata", getMetadata, false);
+      function getMetadata() {
+        audio.mozSetup(input.mozChannels, input.mozSampleRate);
+      }
+      input.addEventListener("MozAudioAvailable", writeSamples, false);
+      // Render the waveform
+      function writeSamples (event){
+        audio.mozWriteAudio(event.frameBuffer);
+      }
+    </script>
+  </body>
+</html>

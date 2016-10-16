@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 2</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 2</h1>
+      <video src="video1.ogv" controls>
+      </video>
+      <div id="display"></div>
+      <script type="text/javascript">
+        var video = document.getElementsByTagName("video")[0];
+        var display = document.getElementById("display");
+        video.addEventListener("MozAudioAvailable", writeSamples, false);
+        
+        function writeSamples (event) { 
+          display.innerHTML += event.frameBuffer[0] + ', ';
+        }
+      </script>
+  </body>
+</html>

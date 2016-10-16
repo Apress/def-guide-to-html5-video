@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 3: example 10</title>
+    <style type="text/css">
+    div#gradient {
+      position: relative;
+      width:     400px;
+      height:    225px;
+      bottom:    229px;
+      background-image: linear-gradient(top, rgba(255,255,255,0), white);
+      background-image: -moz-linear-gradient(top, rgba(255,255,255,0), white);
+      background-image: -webkit-gradient(linear, center top, center bottom, 
+                                         from(rgba(255,255,255,0)), to(white));
+      pointer-events:none;
+    }
+    video {
+      width:  400px;
+      height: 225px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Chapter 3: example 10</h1>
+    <video autoplay>
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <div id="gradient"></div>
+  </body>
+</html>

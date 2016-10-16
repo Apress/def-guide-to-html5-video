@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 14</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 14</h1>
+    <div id="display"></div>
+    <script type="text/javascript">
+      var display = document.getElementById("display");
+      var context = new AudioContext();
+      display.innerHTML = context.sampleRate + " sampling rate<br/>";
+      display.innerHTML += context.destination.numberOfChannels + " output channels<br/>";
+      display.innerHTML += context.currentTime + " currentTime<br/>";
+
+      // create samples
+      source = context.createBufferSource();
+      request = context.createAudioRequest("HelloWorld.aif", false);
+      request.onload = function() { 
+          display.innerHTML += context.currentTime + " currentTime after onload<br/>";
+          source.buffer = request.buffer;
+          source.connect(context.destination);
+          source.noteOn(0);
+      }
+      request.send();
+    </script>
+  </body>
+</html>

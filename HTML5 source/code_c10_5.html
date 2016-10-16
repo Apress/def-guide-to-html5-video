@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 5</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 5</h1>
+    <input type="button" value="Play"></input>
+    <input type="button" value="Pause"></input>
+    <div id="output"></div>
+    <script type="text/javascript">
+      var buttonPlay = document.getElementsByTagName("input")[0];
+      var buttonPause = document.getElementsByTagName("input")[1];
+      var output = document.getElementById("output");
+      var socket = new WebSocket('ws://192.168.1.132:8080/');
+      socket.addEventListener("open", onOpen, false);
+      socket.addEventListener("close", onClose, false);
+      socket.addEventListener("message", onMessage, false);
+      buttonPlay.addEventListener("click", sendPlay, false);
+      buttonPause.addEventListener("click", sendPause, false);
+      function onOpen () {
+        output.innerHTML += "CONNECTED<br/>";
+      }
+      function onClose() {
+        output.innerHTML += "DISCONNECTED<br/>";
+      }
+      function onMessage(evt) {
+        output.innerHTML += '<span style="color: blue;">RESPONSE: ' + evt.data+'</span><br/>';
+//        socket.close();
+      }
+      function sendPlay() {
+        message = "Play";
+        socket.send(message);
+        output.innerHTML += "SENT: " + message + "<br/>"; 
+      }
+      function sendPause() {
+        message = "Pause";
+        socket.send(message);
+        output.innerHTML += "SENT: " + message + "<br/>"; 
+      }
+    </script>
+</html>

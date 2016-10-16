@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 10: example 3</title>
+  </head>
+  <body>
+    <h1>Chapter 10: example 3</h1>
+    <device type="media"></device>
+    <input type="button" value="Record" disabled></input>
+    <script type="text/javascript">
+    var device = document.getElementsByTagName("device")[0];
+    var button = document.getElementsByTagName("input")[0];
+    var recording = false;
+    window.onload = function() {
+      device.addEventListener("change", enableButton, false);
+      button.addEventListener("click", recordToggle, false);
+    }
+    function enableButton() {
+      var stream = this.data; button.disabled = false;
+    }
+    function recordToggle() {
+      if (!recording) {
+        recorder = stream.record();
+        recording = true;
+        button.value = "Stop";
+      } else {
+        file = recorder.stop();
+        // do something with the file
+        upload(file);
+        recording = false;
+        button.value = "Record";
+      }
+    }
+    </script>
+  </body>
+</html>

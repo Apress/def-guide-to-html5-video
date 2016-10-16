@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 15</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 15</h1>
+    <script type="text/javascript">
+      var context   = new AudioContext();
+      var convolver = context.createConvolver();
+
+      // create filter graph
+      source = context.createBufferSource();
+      source.connect(convolver);
+      convolver.connect(context.destination);
+      
+      // load convolution buffer impulse response
+      var req1 = context.createAudioRequest("feedback-spring.aif", false);
+      req1.onload = function() {
+        convolver.buffer = req1.buffer;
+
+        // load samples and play away
+        request = context.createAudioRequest("HelloWorld.aif", false);
+        request.onload = function() { 
+            source.buffer = request.buffer;
+            source.noteOn(0);
+        }
+        request.send();
+
+      }
+      req1.send();
+      
+    </script>
+  </body>
+</html>

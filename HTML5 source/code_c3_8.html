@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 3: example 8</title>
+    <style type="text/css">
+    video {
+      -o-object-position: left bottom;
+      object-position: left bottom;
+      border:  1px solid black;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Chapter 3: example 8</h1>
+      <video width="320" height="90">
+        <source src="HelloWorld.mp4">
+        <source src="HelloWorld.webm">
+        <source src="HelloWorld.ogv">
+      </video>
+      <video width="160" height="180">
+        <source src="HelloWorld.mp4">
+        <source src="HelloWorld.webm">
+        <source src="HelloWorld.ogv">
+      </video><br/>
+      <video width="320" height="90" style="-o-object-fit: fill; object-fit: fill;">
+        <source src="HelloWorld.mp4">
+        <source src="HelloWorld.webm">
+        <source src="HelloWorld.ogv">
+      </video>
+      <video width="320" height="90" style="-o-object-fit: contain; object-fit: contain;">
+        <source src="HelloWorld.mp4">
+        <source src="HelloWorld.webm">
+        <source src="HelloWorld.ogv">
+      </video>
+      <video width="320" height="90" style="-o-object-fit: cover; object-fit: cover;">
+        <source src="HelloWorld.mp4">
+        <source src="HelloWorld.webm">
+        <source src="HelloWorld.ogv">
+      </video>
+  </body>
+</html>

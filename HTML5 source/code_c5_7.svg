@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <mask id="c1" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+      <g id="group">
+        <pattern id="pat" patternUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+          <circle cx="6" cy="6" r="5" fill="white" stroke="white" />
+        </pattern>
+        <rect x="0" y="0" width="480" height="246" fill="url(#pat)"/>
+        <circle id="circle" cx="240" cy="122" r="122" fill="white"/>
+        <rect x="0" y="246" width="480" height="25" fill="white"/>
+      </g>
+    </mask>
+  </defs>
+  <use xlink:href="#group"/>
+</svg>
+
+

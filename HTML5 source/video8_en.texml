@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?quicktime type="application/x-quicktime-texml"?>
+
+<text3GTrack
+  trackWidth="320.0"
+  trackHeight="42.0"
+  layer="2"
+  language="en"
+  transform="translate(0,144)"
+  timeScale="600">
+  <sample duration="3000" keyframe="true">
+    <description
+      horizontalJustification="Left"
+      verticalJustification="Bottom"
+      backgroundColor="0%, 0%, 0%, 100%"
+      format="tx3g">
+      <defaultTextBox width="176" height="36"></defaultTextBox>
+      <fontTable>
+        <font id="1" name="MS Gothic"></font>
+      </fontTable>
+      <sharedStyles>
+        <style id="1">
+          {font-table : 1}
+          {font-size : 10}
+          {font-style : normal}
+          {font-weight : normal}
+          {text-decoration: normal}
+          {color : 100%, 100%, 100%, 100%}
+        </style>
+      </sharedStyles>
+    </description>
+    <sampleData targetEncoding="utf8">
+      <text styleID="1">
+        [00:00:09.30]
+        Chocolate Rain
+        [00:00:12.00]
+        Some stay dry and others feel the pain
+        [00:00:16.00]
+        Chocolate Rain
+        [00:00:18.00]
+        A baby born will die before the sin
+        [00:00:21.00]
+        Chocolate Rain
+        [00:00:23.00]
+      </text>
+    </sampleData>
+  </sample>
+</text3GTrack>
+

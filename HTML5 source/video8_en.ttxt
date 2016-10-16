@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- GPAC 3GPP Text Stream -->
+
+<TextStream version="1.0">
+  <TextStreamHeader width="0" height="0" layer="0" 
+                    translation_x="0" translation_y="0">
+    <TextSampleDescription horizontalJustification="center" 
+                           verticalJustification="bottom" 
+                           backColor="0 0 0 0" verticalText="no" 
+                           fillTextRegion="no" continuousKaraoke="no" scroll="None">
+      <FontTable>
+        <FontTableEntry fontName="Georgia" fontID="1"/>
+      </FontTable>
+
+      <TextBox top="0" left="0" bottom="0" right="0"/>
+      <Style styles="Normal" fontID="1" fontSize="36" color="ff ff ff ff"/>
+    </TextSampleDescription>
+  </TextStreamHeader>
+
+  <TextSample sampleTime="00:00:09.300" text="Chocolate Rain"/>
+  <TextSample sampleTime="00:00:12.000" text="Some stay dry and others feel the pain"/>
+  <TextSample sampleTime="00:00:16.000" text="Chocolate Rain"/>
+  <TextSample sampleTime="00:00:18.000" text="A baby born will die before the sin"/>
+  <TextSample sampleTime="00:00:21.000" text="Chocolate Rain"/>
+</TextStream>

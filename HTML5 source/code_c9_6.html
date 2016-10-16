@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 6</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 6</h1>
+    
+    <video controls>
+        <source src="video1.mp4" type="video/mp4">
+        <source src="video1.webm" type="video/webm">
+        <source src="video1.ogv" type="video/ogg">
+    </video>
+
+    <video controls>
+        <source src="video2.mp4" type="video/mp4">
+        <source src="video2.webm" type="video/webm">
+        <source src="video2.ogv" type="video/ogg">
+    </video>
+
+    <form name="pageurl" action="javascript:changePageUrlFragment(document.pageurl);" method="">
+      <label for="pageurl">Change page url fragment to:</label>
+      <input name="url" type="text" value="#video[0]:t=20&amp;video[1]:t=40" size="40"/>
+      <input name="button" type="button" value="Change" onclick="changePageUrlFragment(this.form)"/>
+    </form>
+
+    <script type="text/javascript">
+      var videos = document.getElementsByTagName("video");
+      window.onload = function() {
+        // get page URL without fragment & time offset
+        setVideoTimeFragments(location.href);
+      }
+
+      // change urls from page input box
+      function changePageUrlFragment(fragment) {
+        // update page url
+        location.hash = fragment.url.value;
+      }
+
+      // when the hash on the window changes, also do an offset
+      window.addEventListener("hashchange", function() {
+        var url = location.href;
+        setVideoTimeFragments(url);
+      }, false);
+
+      // parse the time hash out of the given url
+      function setVideoTimeFragments(url) {
+        var fragment = url.split("#")[1];
+        if (fragment == null) return;
+        var params = fragment.split("&");
+        for (i=0; i<params.length; i++) {
+          var name = params[i].split("=")[0];
+          var video = name.split("video[")[1].split("]")[0];
+          var value = params[i].split("=")[1];
+          videos[video].currentTime = value;
+        }
+      }
+
+
+    </script>
+  </body>
+</html>

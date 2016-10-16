@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 7: example 2</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 7: example 2</h1>
+    <p>
+      <video controls height="270" width="480" >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+    </p>
+    <p>
+      <canvas width="400" height="300" style="border: 1px solid black;">
+      </canvas>
+      <canvas id="scratch" width="400" height="300" style="display: none;">
+      </canvas>
+      <div id="count"></div>
+    </p>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var worker = new Worker("code_c7_2.js");
+      var context, video, sctxt, count, canvas;
+      var calls = 0;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        scratch = document.getElementById("scratch");
+        sctxt = scratch.getContext("2d");
+        count = document.getElementById("count");
+        video.addEventListener("play", postFrame, false);
+        worker.addEventListener("message", drawFrame, false);
+      }
+
+      function postFrame() {
+        w = 320; h = 160;
+        sctxt.drawImage(video, 0, 0, w, h);
+        frame = sctxt.getImageData(0, 0, w, h);
+        arg = {
+          frame: frame,
+          height: h,
+          width: w
+        }
+        worker.postMessage(arg);
+      }
+      function drawFrame (event) {
+        outframe = event.data;
+        if (video.paused || video.ended) {
+          return;
+        }
+        context.putImageData(outframe, 0, 0);
+        calls += 1;
+        count.textContent = calls;          
+        setTimeout(function () {
+          postFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

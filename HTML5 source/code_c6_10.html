@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 10</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 10</h1>
+    <p>
+      <video style="display: none;" >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+      </video>
+    </p>
+    <p>
+      <canvas width="800" height="400" style="border: 1px solid black;">
+      </canvas>
+      <canvas id="scratch" width="160" height="80" style="display:none;">
+      </canvas>
+    </p>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, sctxt, video;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        scratch = document.getElementById("scratch");
+        sctxt = scratch.getContext("2d");
+        video.addEventListener("play", paintFrame, false);
+        if (video.readyState >= video.HAVE_METADATA) {
+          startPlay();
+        } else {
+          video.addEventListener("loadedmetadata", startPlay, false);
+        }
+      }
+      function startPlay() {
+        video.play();
+      }
+      function paintFrame() {
+        sctxt.drawImage(video, 0, 0, 160, 80);
+        pattern = context.createPattern(scratch, 'repeat');
+        context.fillStyle = pattern;
+        context.fillRect(0, 0, 800, 400);
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+            paintFrame();
+        }, 10);
+      }
+    </script>
+  </body>
+</html>

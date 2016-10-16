@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 9</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 9</h1>
+    <video controls autoplay width="400">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <p>seeking on start: <span id="seeking_first"></span>.</p>
+    <p>seeking after timeupdate: <span id="seeking_timeupdate"></span>.</p>
+    <p>seeking after ended: <span id="seeking_ended"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("seeking_first");
+      span1.innerHTML = video.seeking;
+
+      span2 = document.getElementById("seeking_timeupdate");
+      function span2Update(evt) {
+        if (video.currentTime > video.duration/3) {
+          video.currentTime = 2*video.duration/3;
+          video.removeEventListener("timeupdate", span2Update, false);
+          span2.innerHTML = video.seeking;
+        }
+      }
+      span3 = document.getElementById("seeking_ended");
+      function span3Update(evt) {
+        span3.innerHTML = video.seeking;
+      }
+      video.addEventListener("timeupdate", span2Update, false);
+      video.addEventListener("ended", span3Update, false);
+    </script>
+  </body>
+</html>

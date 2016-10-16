@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <mask id="textClip" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+      <text id="text1" x="40" y="120" dx="0,5,5,5,0" dy="10,0,0,0,-20" rotate="-20 -30 -40 -50 0 0 -10" font-size="120" fill="white" font-family="Verdana" font-weight="bold">
+        <tspan x="40">HELLO</tspan>
+        <tspan x="0" dy="120">WORLD</tspan>
+      </text>    
+    </mask>
+  </defs>
+  <use xlink:href="#text1"/>
+</svg>
+
+

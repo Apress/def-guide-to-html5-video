@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 9: example 5</title>
+  </head>
+  <body>
+    <h1>Chapter 9: example 5</h1>
+    <video poster="video6.png" controls>
+      <source src="video6.mp4"  type="video/mp4">
+      <source src="video6.webm" type="video/webm">
+      <source src="video6.ogv"  type="video/ogg">
+      <track label="English HoH" src="video6_audesc_en.wsrt" kind="descriptions" srclang="en">
+      <track label="Chapters"    src="video6_chapters_en.wsrt" kind="chapters" srclang="en">
+      <track label="English SUB"          src="video6_en.wsrt" kind="subtitles" srclang="en">
+      <track label="French SUB"           src="video6_fr.wsrt" kind="subtitles" srclang="fr">
+      <track label="Portuguese/BR SUB"    src="video6_ptbr.wsrt" kind="subtitles" srclang="pt-br">
+      <track label="Russian SUB"          src="video6_ru.wsrt" kind="subtitles" srclang="ru">
+      <track label="English SUB Enhanced" src="video6_en_enhanced.wsrt" kind="metadata" srclang="en">
+      <track label="English SUB Grammar"  src="video6_en_grammar.wsrt" kind="metadata" srclang="en">
+    </video>
+    <script>
+      // get video element
+      var video = document.getElementsByTagName("video")[0];
+      hoh_track = video.addTrack("English HoH", "descriptions", "en");
+      cue = new TimedTrackCue("1", "00:00:00,000", "00:00:03,040", "<pause>2</pause> Xiph.org logo");
+      hoh_track.addCue(cue);
+      cue = new TimedTrackCue("2", "00:00:03,040", "00:00:05,370", "<pause>3</pause> Redhat logo");
+      hoh_track.addCue(cue);
+      cue = new TimedTrackCue("3", "00:00:05,370", "00:00:07,380", "<pause>3</pause> A Digital Media Primer for Geeks");
+      hoh_track.addCue(cue);
+      cue = new TimedTrackCue("4", "00:00:07,380", "00:00:47,480", "<pause>3</pause> \"Monty\" Montgomery of Xiph.org");
+      hoh_track.addCue(cue);
+      cue = new TimedTrackCue("5", "00:00:47,480", "00:01:03,090", "<pause>5</pause> Monty in front of a whiteboard saying \"Consumer - be passive! be happy! look! kittens!\"");
+      hoh_track.addCue(cue);
+      cue = new TimedTrackCue("6", "00:01:03,110", "00:01:06,950", "<pause>4</pause> Monty in front of whiteboard with \"Digital Media Facts\"");
+      hoh_track.addCue(cue);
+      
+
+    </script>
+</html>

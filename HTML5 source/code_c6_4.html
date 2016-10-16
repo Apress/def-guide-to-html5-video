@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 6: example 4</title>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 6: example 4</h1>
+    <video controls height="270" width="480" >
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <canvas width="400" height="300" style="border: 1px solid black;">
+    </canvas>
+    <script>
+      window.onload = function() {
+        initCanvas();
+      }
+      var context, canvas, video;
+      function initCanvas() {
+        video = document.getElementsByTagName("video")[0];
+        canvas = document.getElementsByTagName("canvas")[0];
+        context = canvas.getContext("2d");
+        video.addEventListener("play", paintFrame, false);
+      }
+      function paintFrame() {
+        w = 320; h = 160;
+        context.drawImage(video, 0, 0, w, h);
+        frame = context.getImageData(0, 0, w, h);
+        context.clearRect(0, 0, w, h);
+        // create 4x4 tiling: 80x40
+        tiles = 4;
+        gap = 5;
+        for (x = 0; x < tiles; x++) {
+          for (y = 0; y < tiles; y++) {
+            context.putImageData(frame, x*(w/tiles+gap), y*(h/tiles+gap), x*w/tiles, y*h/tiles, w/tiles, h/tiles);
+          }
+        }
+        if (video.paused || video.ended) {
+          return;
+        }
+        setTimeout(function () {
+            paintFrame();
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

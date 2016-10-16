@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 5: example 2</title><style>
+      .target1 {
+        mask: url("#c1");
+      }
+      .target2 {
+        mask: url("#c2");
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Guide to HTML5 video: chapter 5: example 2</h1>
+    <video class="target1" height="270" width="480" controls >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <video class="target2" height="270" width="480" controls >
+        <source src="HelloWorld.mp4"  type="video/mp4">
+        <source src="HelloWorld.webm" type="video/webm">
+        <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <mask id="c1" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+          <circle cx="0.5" cy="0.5" r="0.5" fill="white"/>
+        </mask>
+        <mask id="c2" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+          <circle cx="0.25" cy="0.25" r="0.5" fill="white"/>
+        </mask>
+      </defs>
+    </svg>
+  </body>
+</html>

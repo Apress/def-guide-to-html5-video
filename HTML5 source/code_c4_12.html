@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 4: example 12</title>
+  </head>
+  <body>
+    <h1>Chapter 4: example 12</h1>
+    <video controls autoplay width="400">
+      <source src="HelloWorld.mp4"  type="video/mp4">
+      <source src="HelloWorld.webm" type="video/webm">
+      <source src="HelloWorld.ogv"  type="video/ogg">
+    </video>
+    <p>default/PlaybackRate on start: <span id="defaultPlaybackRate_first"></span>.</p>
+    <p>default/PlaybackRate as set: <span id="defaultPlaybackRate_set"></span>.</p>
+    <p>default/PlaybackRate after timeupdate: <span id="defaultPlaybackRate_timeupdate"></span>.</p>
+    <p>default/PlaybackRate after ended: <span id="defaultPlaybackRate_ended"></span>.</p>
+    <script type="text/javascript">
+      video = document.getElementsByTagName("video")[0];
+      span1 = document.getElementById("defaultPlaybackRate_first");
+      span1.innerHTML = video.defaultPlaybackRate + ", " + video.playbackRate;
+      video.defaultPlaybackRate = 0.8;
+      span2 = document.getElementById("defaultPlaybackRate_set");
+      span2.innerHTML = video.defaultPlaybackRate + ", " + video.playbackRate;
+      
+      span3 = document.getElementById("defaultPlaybackRate_timeupdate");
+      function span3Update(evt) {
+        if (video.currentTime > video.duration/2) {
+          video.playbackRate = -2;
+          span3.innerHTML = video.defaultPlaybackRate + ", " + video.playbackRate;
+          video.removeEventListener("timeupdate", span2Update, false);
+        }
+      }
+      span4 = document.getElementById("defaultPlaybackRate_ended");
+      function span4Update(evt) {
+        span4.innerHTML = video.defaultPlaybackRate + ", " + video.playbackRate;
+      }
+      video.addEventListener("timeupdate", span3Update, false);
+      video.addEventListener("ended", span4Update, false);
+    </script>
+  </body>
+</html>

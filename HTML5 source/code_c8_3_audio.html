@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guide to HTML5 video: chapter 8: example 3</title>
+  </head>
+  <body>
+    <h1>Chapter 8: example 3</h1>
+      <audio src="HelloWorld.ogg" controls>
+      </audio>
+      <div id="display"></div>
+      <script type="text/javascript">
+        var audio = document.getElementsByTagName("audio")[0];
+        var display = document.getElementById("display");
+        audio.addEventListener("loadedmetadata", getMetadata, false);
+        
+        function getMetadata() {
+          channels = audio.mozChannels;
+          rate     = audio.mozSampleRate;
+          fbLength = audio.mozFrameBufferLength;
+          duration = fbLength / (channels * rate);
+          display.innerHTML = "Channels: " + channels +
+                              "<br/>Rate: " + rate +
+                              "<br/>Framebuffer length: " + fbLength +
+                              "<br/>Framebuffer seconds: " + duration;
+        }
+      </script>
+  </body>
+</html>
